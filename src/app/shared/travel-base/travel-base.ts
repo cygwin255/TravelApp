@@ -30,8 +30,6 @@ export abstract class TravelBase {
     return true;
   }
 
-
-
   getCitiesObservable = (searchPattern: string) => {
     return this.endpoints.fetchCities(searchPattern)
       .map(cities => {

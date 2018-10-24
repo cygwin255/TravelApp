@@ -17,6 +17,7 @@ export class FlightsTravelComponent extends TravelBase {
               endpointsSevice: EndpointsService,
               private historyService: TravelHistoryService) {
     super(fb, endpointsSevice);
+
     this.buildFormGroup({
       origin: [null, Validators.required],
       destination: [null, Validators.required]

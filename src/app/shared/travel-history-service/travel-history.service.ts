@@ -13,7 +13,6 @@ export class TravelHistoryService {
   constructor() {
     this.historyChanged = new BehaviorSubject<Array<any>>(this.getStorage());
     this.historyChanged$ = this.historyChanged.asObservable();
-    console.log(this.getStorage());
   }
 
   add(type: HistoryType, data: IFlightSearch | IHotelsSearch | ICarsSearch) {
