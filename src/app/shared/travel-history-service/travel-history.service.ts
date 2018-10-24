@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { HistoryType, ICarsSearch, IFlightSearch, IHistoryItem, IHotelsSearch } from './travel-history.model';
 
 const STORAGE_NAME = 'history';
 
 @Injectable()
-export class HistoryService {
+export class TravelHistoryService {
   private historyChanged: BehaviorSubject<Array<any>>;
   historyChanged$: Observable<Array<any>>;
 
@@ -15,7 +16,7 @@ export class HistoryService {
     console.log(this.getStorage());
   }
 
-  add(type: HistoryType, data: IFlightTravel) {
+  add(type: HistoryType, data: IFlightSearch | IHotelsSearch | ICarsSearch) {
     const storage = this.getStorage();
 
     storage.push(<IHistoryItem>{
@@ -35,7 +36,7 @@ export class HistoryService {
     const storage = this.load();
 
     if (!storage) {
-      throw new Error('Cannot remove item from empty history!');
+      throw new Error('Cannot remove item from empty travel-history!');
     }
 
     storage.splice(id, 1);
@@ -54,25 +55,4 @@ export class HistoryService {
   private save(data: any) {
     localStorage.setItem(STORAGE_NAME, JSON.stringify(data));
   }
-}
-
-export enum HistoryType {
-  FlightSearch,
-  HotelSearch,
-  CarSearch
-}
-
-export interface IHistoryItem {
-  type: HistoryType;
-  data: IFlightTravel;
-}
-
-export interface ITravelBase {
-  startDate: Date;
-  endDate: Date;
-}
-
-export interface IFlightTravel extends ITravelBase {
-  origin: string;
-  destination: string;
 }

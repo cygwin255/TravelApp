@@ -11,3 +11,13 @@ input[readonly] {
   bottom: 4px;
   right: 10px;
 }
+
+div[contenteditable] {
+  .dropdown-toggle {
+    display: none;
+  }
+}
+
+.div-input {
+  cursor: pointer;
+}

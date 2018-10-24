@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
-import { ControlValueAccessorBase } from '../controlValueAccessorBase/controlValueAccessorBase';
+import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
+import { ControlValueAccessorBase } from '../control-value-accessor-base/control-value-accessor-base';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgbDateStruct, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
@@ -8,6 +8,7 @@ import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
   selector: 'app-datepicker',
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(document:click)': 'handleClick($event)',
   },

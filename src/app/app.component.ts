@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { EndpointsService } from './shared/endpoints-service/endpoints.service';
-import { HistoryService } from './shared/history-service/history.service';
+import { TravelHistoryService } from './shared/travel-history-service/travel-history.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [EndpointsService, HistoryService]
+  providers: [EndpointsService, TravelHistoryService]
 })
 export class AppComponent {
 }

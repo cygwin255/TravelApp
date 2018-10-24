@@ -4,36 +4,31 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { TravelComponent } from './travel/travel.component';
-import { TravelState } from './travel/travel-state';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './shared/datepicker/datepicker.component';
 import { AutoDropdownComponent } from './shared/auto-dropdown/auto-dropdown.component';
 import { FlightsTravelComponent } from './travel/flights-travel/flights-travel.component';
 import { EndpointsService } from './shared/endpoints-service/endpoints.service';
 import { TravelWrapperComponent } from './shared/travel-wrapper/travel-wrapper.component';
-import { HistoryService } from './shared/history-service/history.service';
-import { HistoryComponent } from './history/history.component';
+import { TravelHistoryService } from './shared/travel-history-service/travel-history.service';
+import { TravelHistoryComponent } from './travel-history/travel-history.component';
+import { HotelsTravelComponent } from './travel/hotels-travel/hotels-travel.component';
+import { DropdownCleanAnchorDirective } from './shared/auto-dropdown/dropdown-clean-anchor';
+import { CarsTravelComponent } from './travel/cars-travel/cars-travel.component';
 
 
 const appRoutes: Routes = [
   {
     path: 'flights',
-    component: FlightsTravelComponent,
+    component: FlightsTravelComponent
   },
   {
     path: 'hotels',
-    component: TravelComponent,
-    data: {
-      state: TravelState.Hotels
-    }
+    component: HotelsTravelComponent
   },
   {
     path: 'cars',
-    component: TravelComponent,
-    data: {
-      state: TravelState.Cars
-    }
+    component: CarsTravelComponent
   },
   {
     path: '**',
@@ -45,12 +40,14 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    TravelComponent,
     DatepickerComponent,
     AutoDropdownComponent,
     FlightsTravelComponent,
     TravelWrapperComponent,
-    HistoryComponent
+    TravelHistoryComponent,
+    HotelsTravelComponent,
+    DropdownCleanAnchorDirective,
+    CarsTravelComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +56,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgbModule.forRoot()
   ],
-  providers: [EndpointsService, HistoryService],
+  providers: [EndpointsService, TravelHistoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,0 +1,32 @@
+<app-travel-wrapper
+  [form]="form"
+  (reset)="reset()"
+  (search)="search()"
+  [formGroup]="form"
+>
+  <div class="row">
+    <div class="col form-group">
+      <app-autodropdown
+        placeholder="Choose car type"
+        caption="Type"
+        formControlName="type"
+        [items]="carTypes"
+      ></app-autodropdown>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col form-group">
+      <app-autodropdown
+        placeholder="Type to search"
+        [displayTemplate]="locationDisplayTemplate"
+        caption="Location"
+        formControlName="location"
+        [itemsObservableFunction]="getCitiesObservable"
+      ></app-autodropdown>
+    </div>
+  </div>
+</app-travel-wrapper>
+
+<ng-template #locationDisplayTemplate let-item>
+  {{ item.name }} ({{ item.data }})
+</ng-template>

@@ -1,5 +1,5 @@
 <div ngbDropdown #dropdownInstance="ngbDropdown">
-  <label class="position-relative d-block">
+  <label *ngIf="!readonly" class="position-relative d-block">
     {{ caption }}
     <input
       type="text"
@@ -8,12 +8,27 @@
       (blur)="onBlur()"
       (ngModelChange)="getItemsToDisplay()"
       (click)="openDropdown()"
-      [readonly]="!searchOnPlainItems && !itemsObservableFunction"
       [placeholder]="placeholder || ''"
       ngbDropdownAnchor
     />
-    <div *ngIf="!searchOnPlainItems && !itemsObservableFunction" class="position-absolute dropdown-toggle"></div>
   </label>
+
+  <div *ngIf="readonly" class="position-relative">
+    {{ caption }}
+    <div
+      tabindex="1"
+      type="text"
+      class="form-control form-control-sm div-input"
+      (blur)="onBlur()"
+      (click)="openDropdown()"
+      appDropdownCleanAnchor
+    >
+      <ng-container
+        *ngTemplateOutlet="displayTemplate || defaultDisplayTemplate; context: {$implicit: value || { name: placeholder  || '' }}"
+      ></ng-container>
+    </div>
+    <div class="position-absolute dropdown-toggle"></div>
+  </div>
 
   <div ngbDropdownMenu>
     <span *ngIf="!(displayObservable | async)" class="dropdown-item-text">Loading...</span>
@@ -23,7 +38,9 @@
       (click)="selectItem(item)"
       class="dropdown-item"
     >
-      <ng-container *ngTemplateOutlet="displayTemplate || defaultDisplayTemplate; context: {$implicit: item}"></ng-container>
+      <ng-container
+        *ngTemplateOutlet="displayTemplate || defaultDisplayTemplate; context: {$implicit: item}"
+      ></ng-container>
     </button>
   </div>
 </div>
@@ -31,3 +48,13 @@
 <ng-template #defaultDisplayTemplate let-item>
   {{ item.name }}
 </ng-template>
+
+<!--
+     <app-contenteditable-input
+      [(ngModel)]="searchValue"
+      (blur)="onBlur()"
+      (ngModelChange)="getItemsToDisplay()"
+      (click)="openDropdown()"
+      ngbDropdownAnchor
+    ></app-contenteditable-input>
+ -->

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, forwardRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ControlValueAccessorBase } from '../controlValueAccessorBase/controlValueAccessorBase';
+import { ChangeDetectionStrategy, Component, forwardRef, Input, OnInit, TemplateRef, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { ControlValueAccessorBase } from '../control-value-accessor-base/control-value-accessor-base';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { debounce } from 'ts-debounce';
 
 
 @Component({
@@ -30,9 +31,16 @@ export class AutoDropdownComponent extends ControlValueAccessorBase<IAutoDropdow
 
   searchValue: string;
   displayObservable: Observable<Array<IAutoDropdownItem>>;
+  readonly = false;
+
+  constructor(private changeDetector: ChangeDetectorRef) {
+    super();
+  }
 
   ngOnInit() {
     this.getItemsToDisplay();
+    this.readonly = !this.searchOnPlainItems && !this.itemsObservableFunction;
+    this.getItemsToDisplay = debounce(this.getItemsToDisplay.bind(this), 300);
   }
 
   writeValue(item: IAutoDropdownItem) {
@@ -75,6 +83,8 @@ export class AutoDropdownComponent extends ControlValueAccessorBase<IAutoDropdow
     } else {
       this.displayObservable = this.itemsObservableFunction(this.searchValue);
     }
+
+    this.changeDetector.markForCheck();
   }
 }
 
