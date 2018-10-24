@@ -1,0 +1,33 @@
+<div ngbDropdown #dropdownInstance="ngbDropdown">
+  <label class="position-relative d-block">
+    {{ caption }}
+    <input
+      type="text"
+      class="form-control form-control-sm"
+      [(ngModel)]="searchValue"
+      (blur)="onBlur()"
+      (ngModelChange)="getItemsToDisplay()"
+      (click)="openDropdown()"
+      [readonly]="!searchOnPlainItems && !itemsObservableFunction"
+      [placeholder]="placeholder || ''"
+      ngbDropdownAnchor
+    />
+    <div *ngIf="!searchOnPlainItems && !itemsObservableFunction" class="position-absolute dropdown-toggle"></div>
+  </label>
+
+  <div ngbDropdownMenu>
+    <span *ngIf="!(displayObservable | async)" class="dropdown-item-text">Loading...</span>
+    <span *ngIf="(displayObservable | async)?.length === 0" class="dropdown-item-text">Not Found</span>
+    <button
+      *ngFor="let item of displayObservable | async"
+      (click)="selectItem(item)"
+      class="dropdown-item"
+    >
+      <ng-container *ngTemplateOutlet="displayTemplate || defaultDisplayTemplate; context: {$implicit: item}"></ng-container>
+    </button>
+  </div>
+</div>
+
+<ng-template #defaultDisplayTemplate let-item>
+  {{ item.name }}
+</ng-template>

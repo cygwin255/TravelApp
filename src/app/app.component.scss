@@ -1,0 +1,41 @@
+@import "~bootstrap/scss/bootstrap-grid.scss";
+
+.nav-link {
+  outline: none;
+  cursor: pointer;
+
+  &.active {
+    border: 1px solid dodgerblue;
+    border-right: none;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+
+  &:not(.active) {
+    border-right: 1px solid dodgerblue;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .nav-link {
+
+    &.active {
+      border: 1px solid dodgerblue;
+      border-bottom: none;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 0;
+    }
+
+    &:not(.active) {
+      border: none;
+      border-bottom: 1px solid dodgerblue;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .navigation {
+    max-width: 200px;
+  }
+}

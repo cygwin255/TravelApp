@@ -1,0 +1,28 @@
+<form [formGroup]="form" class="form-validation">
+  <div class="row">
+    <div class="col-6 form-group">
+      <app-datepicker
+        placeholder="Select date"
+        caption="Start Date"
+        formControlName="startDate"
+      ></app-datepicker>
+    </div>
+    <div class="col-6 form-group">
+      <app-datepicker
+        placeholder="Select date"
+        placement="bottom-right"
+        caption="End Date"
+        formControlName="endDate"
+      ></app-datepicker>
+    </div>
+  </div>
+
+  <ng-content></ng-content>
+
+  <div class="row">
+    <div class="col-auto ml-auto">
+      <button class="btn btn-link" type="button" (click)="reset.emit()">clear</button>
+      <button class="btn btn-success" type="button" (click)="search.emit()">Search</button>
+    </div>
+  </div>
+</form>

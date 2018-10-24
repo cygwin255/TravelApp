@@ -1,0 +1,33 @@
+<app-travel-wrapper
+  [form]="form"
+  (reset)="reset()"
+  (search)="search()"
+  [formGroup]="form"
+>
+  <div class="row">
+    <div class="col form-group">
+      <app-autodropdown
+        placeholder="Type to search"
+        [displayTemplate]="dpDisplayTemplate"
+        caption="From"
+        formControlName="origin"
+        [itemsObservableFunction]="getCitiesObservable"
+      ></app-autodropdown>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col form-group">
+      <app-autodropdown
+        placeholder="Type to search"
+        [displayTemplate]="dpDisplayTemplate"
+        caption="To"
+        formControlName="destination"
+        [itemsObservableFunction]="getCitiesObservable"
+      ></app-autodropdown>
+    </div>
+  </div>
+</app-travel-wrapper>
+
+<ng-template #dpDisplayTemplate let-item>
+  {{ item.name }} ({{ item.data }})
+</ng-template>

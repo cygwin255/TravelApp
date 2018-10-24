@@ -1,0 +1,28 @@
+<div class="history">
+  <div class="row" *ngFor="let item of (historyService.historyChanged$ | async).reverse(); let i = index">
+    <div class="col">
+      <div class="row align-items-center" [ngSwitch]="item.type">
+        <ng-container *ngSwitchCase="HistoryType.FlightSearch">
+          <div class="col-1">
+            <i class="fa fa-plane"></i>
+          </div>
+
+          <div class="col-5">
+            {{ item.data.startDate | date: 'MMMM d, YY' }} - {{ item.data.endDate | date: 'MMMM d, YY' }}
+          </div>
+
+          <div class="col-5">
+            {{ item.data.origin }}
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            {{ item.data.destination }}
+          </div>
+        </ng-container>
+        <div class="col-1 align-self-center">
+          <a href="#" (click)="historyService.remove(i)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

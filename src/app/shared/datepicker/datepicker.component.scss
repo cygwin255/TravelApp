@@ -1,0 +1,21 @@
+.datepicker {
+  .datepicker-container {
+    position: relative;
+    cursor: pointer;
+
+    input[readonly] {
+      background-color: white;
+    }
+
+    .datepicker-input {
+      padding-right: 35px;
+      pointer-events: none;
+    }
+
+    .datepicker-calendar {
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<div class="datepicker">
+  <label class="d-inline">
+    {{ caption }}
+    <div class="datepicker-container">
+      <input
+        ngbDatepicker
+        #datepickerInstance="ngbDatepicker"
+        class="form-control form-control-sm datepicker-input"
+        type="text"
+        [(ngModel)]="value"
+        (blur)="onTouched()"
+        (ngModelChange)="onModelChange($event)"
+        (click)="datepickerInstance.toggle()"
+        [placement]="placement"
+        navigation="select"
+        [placeholder]="placeholder || ''"
+        readonly
+      />
+      <div class="datepicker-calendar">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+      </div>
+    </div>
+  </label>
+
+</div>
