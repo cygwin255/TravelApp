@@ -18,7 +18,7 @@ export class TravelHistoryService {
   add(type: HistoryType, data: IFlightSearch | IHotelsSearch | ICarsSearch) {
     const storage = this.getStorage();
 
-    storage.push(<IHistoryItem>{
+    storage.unshift(<IHistoryItem>{
       type,
       data
     });

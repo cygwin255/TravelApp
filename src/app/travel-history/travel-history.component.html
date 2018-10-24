@@ -4,7 +4,7 @@
       Previous Searches
     </div>
   </div>
-  <div class="row" *ngFor="let item of (historyService.historyChanged$ | async).reverse(); let i = index">
+  <div class="row" *ngFor="let item of historyService.historyChanged$ | async; let i = index">
     <div class="col">
       <div class="row align-items-center" [ngSwitch]="item.type">
         <ng-container *ngSwitchCase="HistoryType.FlightSearch">
