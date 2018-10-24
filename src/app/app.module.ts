@@ -53,7 +53,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { enableTracing: false, useHash: true }),
     NgbModule.forRoot()
   ],
   providers: [EndpointsService, TravelHistoryService],
