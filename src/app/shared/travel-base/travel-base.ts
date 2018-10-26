@@ -1,6 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EndpointsService } from '../endpoints-service/endpoints.service';
 import { IAutoDropdownItem } from '../auto-dropdown/auto-dropdown.component';
+import { datesValidator } from './dates-validator';
 
 export abstract class TravelBase {
   form: FormGroup;
@@ -14,6 +15,14 @@ export abstract class TravelBase {
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
       ...additionalItems
+    });
+
+    this.form.valueChanges.subscribe((formValues: { [key: string]: any }) => {
+      if (datesValidator(this.form) === false) {
+        this.form.patchValue({
+          startDate: formValues.endDate
+        });
+      }
     });
   }
 
@@ -40,5 +49,5 @@ export abstract class TravelBase {
           })
         );
       });
-  }
+  };
 }

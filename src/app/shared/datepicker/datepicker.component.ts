@@ -44,4 +44,16 @@ export class DatepickerComponent extends ControlValueAccessorBase<NgbDateStruct>
       this.datepickerInstance.close();
     }
   }
+
+  close() {
+    setTimeout(() => {
+      this.datepickerInstance.close();
+    }, 0);
+  }
+
+  open() {
+    setTimeout(() => {
+      this.datepickerInstance.open();
+    }, 0);
+  }
 }
