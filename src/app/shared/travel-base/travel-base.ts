@@ -16,14 +16,6 @@ export abstract class TravelBase {
       endDate: [null, Validators.required],
       ...additionalItems
     });
-
-    this.form.valueChanges.subscribe((formValues: { [key: string]: any }) => {
-      if (datesValidator(this.form) === false) {
-        this.form.patchValue({
-          startDate: formValues.endDate
-        });
-      }
-    });
   }
 
   reset() {
