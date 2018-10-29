@@ -12,11 +12,11 @@
             <i class="fa fa-plane"></i>
           </div>
 
-          <div class="col-5">
-            {{ item.data.startDate | date: 'longDate' }} - {{ item.data.endDate | date: 'longDate' }}
+          <div class="col-11 col-sm-4 col-lg-3">
+            {{ item.data.startDate | date: 'shortDate' }} - {{ item.data.endDate | date: 'shortDate' }}
           </div>
 
-          <div class="col-5">
+          <div class="col-11 col-sm-6 col-lg-7">
             {{ item.data.origin }}
             <i class="fa fa-angle-double-right" aria-hidden="true"></i>
             {{ item.data.destination }}
@@ -28,15 +28,15 @@
             <i class="fa fa-hotel"></i>
           </div>
 
-          <div class="col-5">
-            {{ item.data.startDate | date: 'longDate' }} - {{ item.data.endDate | date: 'longDate' }}
+          <div class="col-11 col-sm-4 col-lg-3">
+            {{ item.data.startDate | date: 'shortDate' }} - {{ item.data.endDate | date: 'shortDate' }}
           </div>
 
-          <div class="col-2">
+          <div class="col-5 col-sm-3 col-lg-4">
             {{ item.data.location }}
           </div>
 
-          <div class="col-3">
+          <div class="col-6 col-sm-3">
             <i *ngFor="let i of Array(item.data.rating).fill(0)" class="fa fa-star" aria-hidden="true"></i>
           </div>
         </ng-container>
@@ -46,15 +46,15 @@
             <i class="fa fa-car"></i>
           </div>
 
-          <div class="col-5">
-            {{ item.data.startDate | date: 'longDate' }} - {{ item.data.endDate | date: 'longDate' }}
+          <div class="col-11 col-sm-4 col-lg-3">
+            {{ item.data.startDate | date: 'shortDate' }} - {{ item.data.endDate | date: 'shortDate' }}
           </div>
 
-          <div class="col-2">
+          <div class="col-6 col-sm-3 col-lg-4">
             {{ item.data.location }}
           </div>
 
-          <div class="col-3">
+          <div class="col-5 col-sm-3">
             {{ item.data.type }}
           </div>
         </ng-container>
@@ -65,6 +65,7 @@
           </div>
         </div>
       </div>
+      <hr class="divider" />
     </div>
   </div>
 </div>

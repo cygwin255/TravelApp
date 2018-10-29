@@ -1,4 +1,16 @@
+@import "~bootstrap/scss/bootstrap-grid.scss";
+
 .history {
   margin-top: 20px;
   border-top: 1px solid #CCC;
+}
+
+.divider {
+  display: none;
+}
+
+@include media-breakpoint-down(md) {
+  .divider {
+    display: block;
+  }
 }

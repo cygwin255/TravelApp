@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EndpointsService } from '../endpoints-service/endpoints.service';
 import { IAutoDropdownItem } from '../auto-dropdown/auto-dropdown.component';
-import { datesValidator } from './dates-validator';
+import { createCompareWithValidator, datesValidator } from './dates-validator';
 
 export abstract class TravelBase {
   form: FormGroup;
@@ -34,12 +34,11 @@ export abstract class TravelBase {
   getCitiesObservable = (searchPattern: string) => {
     return this.endpoints.fetchCities(searchPattern)
       .map(cities => {
-        return cities.map(item => (
+        return cities.map(name => (
           <IAutoDropdownItem>{
-            name: item.city,
-            data: item.state
+            name,
           })
         );
       });
-  };
+  }
 }

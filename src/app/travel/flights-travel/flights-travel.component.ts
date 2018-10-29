@@ -5,6 +5,7 @@ import { EndpointsService } from '../../shared/endpoints-service/endpoints.servi
 import { TravelHistoryService } from '../../shared/travel-history-service/travel-history.service';
 import { ngbDateStructToDate } from '../../utils';
 import { HistoryType, IFlightSearch } from '../../shared/travel-history-service/travel-history.model';
+import { createCompareWithValidator } from '../../shared/travel-base/dates-validator';
 
 @Component({
   selector: 'app-flights-travel',
@@ -19,9 +20,25 @@ export class FlightsTravelComponent extends TravelBase {
     super(fb, endpointsSevice);
 
     this.buildFormGroup({
-      origin: [null, Validators.required],
-      destination: [null, Validators.required]
+      origin: null,
+      destination: null
     });
+
+    const originControl = this.form.get('origin');
+    const destinationControl = this.form.get('destination');
+
+    const originValidator = createCompareWithValidator('locationValid',
+      destinationControl,
+      (x, y) => x.name === y.name && x.data === y.data
+    );
+
+    const destinationValidator = createCompareWithValidator('locationValid',
+      originControl,
+      (x, y) => x.name === y.name && x.data === y.data
+    );
+
+    originControl.validator = Validators.compose([Validators.required, originValidator]);
+    destinationControl.validator = Validators.compose([Validators.required, destinationValidator]);
   }
 
   search() {
