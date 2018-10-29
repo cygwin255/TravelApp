@@ -43,3 +43,10 @@
     max-width: 200px;
   }
 }
+
+@include media-breakpoint-down(md) {
+  .container {
+    width: 100%;
+    max-width: none;
+  }
+}
